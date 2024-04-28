@@ -1,7 +1,5 @@
-# To jest plik konfiguracyjny użytkownika Gita.
 [user]
-# Dostosuj i odkomentuj poniższe wiersze:
-name = cywil5115
-email = 116916841+cywil5115@users.noreply.github.com
+	name = cywil5115
+	email = 116916841+cywil5115@users.noreply.github.com
 [core]
 	editor = kvim
