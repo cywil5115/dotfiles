@@ -304,8 +304,8 @@ alias chadd='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* |
 alias ch-up='chezmoi apply && exec $SHELL'
 
 alias ch-commit='git commit -a -m " $(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S")) " '
-alias chpush-local='chezmoi cd && ch-commit'
-alias chpush='ch-commit && git push -u origin main'
+alias chpush-local='cd ~/.local/share/chezmoi && ch-commit'
+alias chpush='chpush-local && git push -u origin main'
 alias chdiff='chezmoi diff'
 alias chpull='chezmoi update -v && exec $SHELL'
 alias chhelp='bat ~/.zshrc | grep "alias ch"'
