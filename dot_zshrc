@@ -178,8 +178,8 @@ alias kvim='NVIM_APPNAME="kickstart_nvim" nvim'
 alias rvim='NVIM_APPNAME="nvim_rocks" nvim'
 alias testvim='NVIM_APPNAME="testvim" nvim'
 
-export VISUAL=kvim
-export EDITOR=kvim
+export VISUAL=vim
+export EDITOR=vim
 
 # alias hx='helix'
 
@@ -204,10 +204,19 @@ function day {
     date +"%a %b %d"
 }
 alias dzien='day'
+
+function touch_hush {
+  if [ ! -a ~/.hushlogin ]; then
+    touch ~/.hushlogin
+  fi
+}
+
+touch_hush
+
 # launch daily notes with `notes`
 #
 # launch specific notes with `notes specialwork`
-#function notes(){
+# function notes(){
 #  SUBJECT="${1:=daily}"
 #  if [ -z "$SUBJECT" ]
 #  then
@@ -280,6 +289,15 @@ alias ......="cd ../../../../.."
 # ------  NAVIGATION  ------ #
 # VI Mode
 bindkey jj vi-cmd-mode
+
+# --------  CHEZMOI  ------- #
+alias chedit='chezmoi cd && pwd | $EDITOR'
+alias chadd='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DStore | xargs -rn1 chezmoi add' 
+alias chtest='chezmoi apply -v -n'
+alias chup='chezmoi apply && exec $SHELL'
+alias chpush='chezmoi cd && git add . && echo '"Dotfiles update: $(day)"' | git commit -m && git push -u origin main'
+alias chpull='chezmoi cd && git pull && chezmoi update -v'
+alias chhelp='bat ~/.zshrc | grep "alias ch"'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
