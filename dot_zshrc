@@ -4,7 +4,6 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -174,6 +173,7 @@ alias gre='git reset'
 
 # -------  EDITORS (NVIM)  ------ #
 # I want to keep different configurations and easly switch between them:
+# 'chvim' alias is taken
 
 alias kvim='NVIM_APPNAME="kickstart_nvim" nvim'
 alias rvim='NVIM_APPNAME="nvim_rocks" nvim'
@@ -294,21 +294,35 @@ alias ......="cd ../../../../.."
 bindkey jj vi-cmd-mode
 
 # --------  CHEZMOI  ------- #
-  # chezmoi cd
-  # git add .
-  # git commit -m "$(echo 'Dotfiles update' $(date +"%a-%b-%d-%Y"))"
-  # git push -u origin main
+# 
+# Add .zshrc .bashrc and files from .config to working dir:
+alias ch-add='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
 
-alias chedit='chezmoi edit' #<Ctrl-T>
-alias chadd='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
-alias ch-up='chezmoi apply && exec $SHELL'
-
+alias ch-up='chezmoi apply -v && exec $SHELL'
 alias ch-commit='git commit -a -m " $(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S")) " '
-alias chpush-local='cd ~/.local/share/chezmoi && ch-commit'
-alias chpush='chpush-local && git push -u origin main'
 alias chdiff='chezmoi diff'
-alias chpull='chezmoi update -v && exec $SHELL'
-alias chhelp='bat ~/.zshrc | grep "alias ch"'
+
+# Edit Files and Update them to Home
+alias chvim='chezmoi edit && ch-up' 
+# Edit Without Updating to Home
+alias chvim-no="chezmoi edit"
+
+# Push Changes: 
+# to your local repo: 
+alias chpush-local='cd ~/.local/share/chezmoi && ch-commit'
+# to your remote repo: 
+alias chpush-remote='chpush-local && git push -u origin main'
+
+# Pull: 
+# to your local repo: 
+alias chpull-local='cd ~/.local/share/chezmoi && git pull'
+# directly to your home:
+alias chpull-tohome='chezmoi update -v && exec $SHELL'
+
+# Delete local repo files without deleting .git
+alias ch-rm='echo ~/.local/share/chezmoi/* | xargs -rn1 | grep -v '^\.' | sudo xargs -rn1 rm -R'
+alias ch-rm-add='ch-rm && ch-add '
+alias chhelp='bat ~/.zshrc | grep "alias ch" '
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
