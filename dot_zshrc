@@ -302,8 +302,10 @@ bindkey jj vi-cmd-mode
 alias chedit='chezmoi edit' #<Ctrl-T>
 alias chadd='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
 alias ch-up='chezmoi apply && exec $SHELL'
+
 alias ch-commit='git commit -a -m " $(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S")) " '
-alias chpush='chezmoi cd && ch-commit'
+alias chpush-local='chezmoi cd && ch-commit'
+alias chpush='ch-commit && git push -u origin main'
 alias chdiff='chezmoi diff'
 alias chpull='chezmoi update -v && exec $SHELL'
 alias chhelp='bat ~/.zshrc | grep "alias ch"'
