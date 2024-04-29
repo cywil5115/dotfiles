@@ -296,7 +296,7 @@ bindkey jj vi-cmd-mode
 # --------  CHEZMOI  ------- #
 # 
 # Add .zshrc .bashrc and files from .config to working dir:
-alias ch-add='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
+alias ch-add='chezmoi add ~/.zshrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
 
 alias ch-up='chezmoi apply -v && exec $SHELL'
 alias ch-commit='git commit -a -m " $(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S")) " '
