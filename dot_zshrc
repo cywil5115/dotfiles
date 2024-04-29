@@ -294,19 +294,16 @@ alias ......="cd ../../../../.."
 bindkey jj vi-cmd-mode
 
 # --------  CHEZMOI  ------- #
+  # chezmoi cd
+  # git add .
+  # git commit -m "$(echo 'Dotfiles update' $(date +"%a-%b-%d-%Y"))"
+  # git push -u origin main
 
-function chpush_f {
-  chezmoi cd
-  git add .
-  echo -n '"Dotfiles update: $(day)"' | git commit -m
-  git push -u origin main
-}
 alias chedit='chezmoi edit' #<Ctrl-T>
 alias chadd='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
 alias ch-up='chezmoi apply && exec $SHELL'
 alias chdiff='chezmoi diff'
-alias chpush='chpush_f'
-alias chpull='chezmoi cd && git pull && chezmoi update -v'
+alias chpull='chezmoi update -v'
 alias chhelp='bat ~/.zshrc | grep "alias ch"'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
