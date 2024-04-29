@@ -129,6 +129,7 @@ alias lsl='colorls -la | bat --color auto'
 # alias ll="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 # alias lll='eza --long --all --git --icons=always'
 alias cpv='rsync -ah --info=progress2'
+alias mkempty='echo -n "" >'
 
 # --------  THEMES   ------- #
 
@@ -178,8 +179,10 @@ alias kvim='NVIM_APPNAME="kickstart_nvim" nvim'
 alias rvim='NVIM_APPNAME="nvim_rocks" nvim'
 alias testvim='NVIM_APPNAME="testvim" nvim'
 
-export VISUAL=vim
-export EDITOR=vim
+#alias vim='kvim' # choose
+
+export VISUAL=nvim
+export EDITOR=nvim
 
 # alias hx='helix'
 
@@ -201,7 +204,7 @@ function copypath {
 }
 
 function day {
-    date +"%a %b %d"
+    date +"%a %b %d %Y"
 }
 alias dzien='day'
 
@@ -291,11 +294,18 @@ alias ......="cd ../../../../.."
 bindkey jj vi-cmd-mode
 
 # --------  CHEZMOI  ------- #
-alias chedit='chezmoi cd && pwd | $EDITOR'
-alias chadd='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DStore | xargs -rn1 chezmoi add' 
-alias chtest='chezmoi apply -v -n'
-alias chup='chezmoi apply && exec $SHELL'
-alias chpush='chezmoi cd && git add . && echo '"Dotfiles update: $(day)"' | git commit -m && git push -u origin main'
+
+function chpush_f {
+  chezmoi cd
+  git add .
+  echo -n '"Dotfiles update: $(day)"' | git commit -m
+  git push -u origin main
+}
+alias chedit='chezmoi edit' #<Ctrl-T>
+alias chadd='chezmoi add ~/.zshrc && chezmoi add ~/.bashrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
+alias ch-up='chezmoi apply && exec $SHELL'
+alias chdiff='chezmoi diff'
+alias chpush='chpush_f'
 alias chpull='chezmoi cd && git pull && chezmoi update -v'
 alias chhelp='bat ~/.zshrc | grep "alias ch"'
 
