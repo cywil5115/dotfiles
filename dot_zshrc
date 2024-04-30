@@ -295,28 +295,24 @@ bindkey jj vi-cmd-mode
 
 # --------  CHEZMOI  ------- #
  
-# Add .zshrc and files from .config to working dir:
+# Add .zshrc and ~/.config files:
 alias ch-add='chezmoi add ~/.zshrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
-
-alias ch-up='chezmoi apply -v && exec $SHELL'
-alias ch-commit='git add . && git commit -m " $(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S")) " '
 alias chdiff='chezmoi diff'
+alias chmerge='chezmoi merge'
+alias ch-up='chezmoi apply -v && exec $SHELL'
 
 # Edit Files and Update them to Home
-alias chvim='chezmoi edit && ch-up' 
+alias chedit='chezmoi edit && ch-up' 
 # Edit Without Updating to Home
-alias chvim-no="chezmoi edit"
+alias chedit-no="chezmoi edit"
 
-# Push Changes: 
-# to your local repo: 
-alias chpush-local='cd ~/.local/share/chezmoi && ch-commit'
-# to your remote repo: 
-alias chpush-remote='chpush-local && git push -u origin main'
+# with use of git aliasses
+alias ch-commit='cd ~/.local/share/chezmoi && gadd . && gc "$(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S"))" '
+alias ch-commit-remote='ch-commit && gpu main'
 
-# Pull: 
-# to your local repo: 
-alias chpull-local='cd ~/.local/share/chezmoi && git pull'
-# remote directly to your home:
+# Pull to your local repo: 
+alias chpull-tolocal='cd ~/.local/share/chezmoi && git pull'
+# Pull remote directly to your home:
 alias chpull-tohome='chezmoi update -v && exec $SHELL'
 alias chhelp='bat ~/.zshrc | grep "alias ch" '
 
