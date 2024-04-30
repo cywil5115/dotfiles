@@ -314,7 +314,7 @@ alias chcommit-push='chcommit && git push -u origin main'
 alias chpull-local='cd ~/.local/share/chezmoi && git pull'
 # Pull remote directly to your home:
 alias chpull-home='chezmoi update -v && exec $SHELL'
-alias chhelp='bat ~/.zshrc | grep "alias ch" '
+alias chhelp='bat ~/.zshrc | grep -v chhelp | grep "alias ch" '
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
