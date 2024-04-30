@@ -294,8 +294,8 @@ alias ......="cd ../../../../.."
 bindkey jj vi-cmd-mode
 
 # --------  CHEZMOI  ------- #
-# 
-# Add .zshrc .bashrc and files from .config to working dir:
+ 
+# Add .zshrc and files from .config to working dir:
 alias ch-add='chezmoi add ~/.zshrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
 
 alias ch-up='chezmoi apply -v && exec $SHELL'
@@ -316,12 +316,8 @@ alias chpush-remote='chpush-local && git push -u origin main'
 # Pull: 
 # to your local repo: 
 alias chpull-local='cd ~/.local/share/chezmoi && git pull'
-# directly to your home:
+# remote directly to your home:
 alias chpull-tohome='chezmoi update -v && exec $SHELL'
-
-# Delete local repo files without deleting .git
-alias ch-rm='echo ~/.local/share/chezmoi/* | xargs -rn1 | grep -v '^\.' | sudo xargs -rn1 rm -R'
-alias ch-rm-add='ch-rm && ch-add '
 alias chhelp='bat ~/.zshrc | grep "alias ch" '
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
