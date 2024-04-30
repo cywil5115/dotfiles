@@ -307,13 +307,13 @@ alias chedit='chezmoi edit && ch-up'
 alias chedit-no="chezmoi edit"
 
 # with use of git aliasses
-alias ch-commit='cd ~/.local/share/chezmoi && gadd . && gc "$(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S"))" '
-alias ch-commit-remote='ch-commit && git push -u origin main'
+alias ch-commit-local='cd ~/.local/share/chezmoi && gadd . && gc "$(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S"))" '
+alias ch-commit-remote='ch-commit-local && git push -u origin main'
 
 # Pull to your local repo: 
-alias chpull-tolocal='cd ~/.local/share/chezmoi && git pull'
+alias chpull-local='cd ~/.local/share/chezmoi && git pull'
 # Pull remote directly to your home:
-alias chpull-tohome='chezmoi update -v && exec $SHELL'
+alias chpull-home='chezmoi update -v && exec $SHELL'
 alias chhelp='bat ~/.zshrc | grep "alias ch" '
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
