@@ -308,7 +308,7 @@ alias chedit-no="chezmoi edit"
 
 # with use of git aliasses
 alias ch-commit='cd ~/.local/share/chezmoi && gadd . && gc "$(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S"))" '
-alias ch-commit-remote='ch-commit && gpu main'
+alias ch-commit-remote='ch-commit && git push -u origin main'
 
 # Pull to your local repo: 
 alias chpull-tolocal='cd ~/.local/share/chezmoi && git pull'
