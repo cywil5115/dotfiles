@@ -296,7 +296,7 @@ bindkey jj vi-cmd-mode
 # --------  CHEZMOI  ------- #
  
 # Add .zshrc and ~/.config files:
-alias ch-add='chezmoi add ~/.zshrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
+alias chadd='chezmoi add ~/.zshrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
 alias chdiff='chezmoi diff'
 alias chmerge='chezmoi merge'
 alias ch-up='chezmoi apply -v && exec $SHELL'
