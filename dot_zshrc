@@ -104,6 +104,9 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="$EDITOR ~/.zshrc"
 
+# No bell: Shut up Zsh
+unsetopt beep
+
 # Aliases
 # alias e='dolphin ./' #KDE
 # alias e='nautilus ./' #GNOME
@@ -157,6 +160,8 @@ alias ga='git add -p'
 alias gcoall='git checkout -- .'
 alias gr='git remote'
 alias gre='git reset'
+alias fsb='~/.scripts/fsb.sh'
+alias fshow='~/.scripts/fshow.sh'
 
 # Docker
 # alias dco="docker compose"
