@@ -173,11 +173,10 @@ alias gre='git reset'
 
 # -------  EDITORS (NVIM)  ------ #
 # I want to keep different configurations and easly switch between them:
-# 'chvim' alias is taken
 
 alias kvim='NVIM_APPNAME="kickstart_nvim" nvim'
 alias rvim='NVIM_APPNAME="nvim_rocks" nvim'
-alias testvim='NVIM_APPNAME="testvim" nvim'
+alias testvim='NVIM_APPNAME="test_vim" nvim'
 
 #alias vim='kvim' # choose
 
