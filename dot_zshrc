@@ -32,7 +32,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
-zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
@@ -44,7 +44,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-DISABLE_AUTO_TITLE="true"
+# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -76,7 +76,7 @@ DISABLE_AUTO_TITLE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git copypath zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -101,24 +101,19 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
 # Example aliases
-alias zshconfig="$EDITOR ~/.zshrc"
+# alias zshconfig="$EDITOR ~/.zshrc"
 
-# -------  ALIASES  ------- #
-
+# Aliases
 # alias e='dolphin ./' #KDE
 # alias e='nautilus ./' #GNOME
 alias e='open ./' #MACOS
-
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-
 alias zzz='sudo shutdown -h' 
 # alias zzzz='shutdown -c' #LINUX
 # alias noshutdown='shutdown -c' #LINUX
 alias zzzz='sudo killall shutdown' #MACOS
 alias noshutdown='sudo killall shutdown' #MACOS
-
 alias cat='bat'
 alias cl='clear'
 alias ls='colorls'
@@ -129,25 +124,23 @@ alias lsl='colorls -la | bat --color auto'
 # alias lll='eza --long --all --git --icons=always'
 alias cpv='rsync -ah --info=progress2'
 alias mkempty='echo -n "" >'
+# alias hx='helix'
 
-# --------  THEMES   ------- #
-
-#BAT
+# Themes
+#bat
 export BAT_THEME=gruvbox-dark
 #export BAT_THEME=tokyonight-night
-
-#FZF
+#fzf
 fg="#c4821f"
 bg="#242424"
 bg_highlight="#772c00"
 purple="#B388FF"
 blue="#06BCE4"
 cyan="#2CF9ED"
-
-# HELIX - dynamic theme
+#helix - dynamic theme
 alias hx-up='~/.config/helix/lib/bash.sh'
 
-# ---------  GIT   --------- #
+# Git
 alias gc="git commit -m"
 alias gca="git commit -a -m"
 alias gp="git push origin HEAD"
@@ -165,44 +158,22 @@ alias gcoall='git checkout -- .'
 alias gr='git remote'
 alias gre='git reset'
 
-# --------  DOCKER  -------- #
+# Docker
 # alias dco="docker compose"
 # alias dps="docker ps"
 # alias dpa="docker ps -a"
 # alias dl="docker ps -l -q"
 # alias dx="docker exec -it"
 
-# -------  EDITORS (NVIM)  ------ #
-# I want to keep different configurations and easly switch between them:
-
+# Neovim
 alias kvim='NVIM_APPNAME="kickstart_nvim" nvim'
 alias rvim='NVIM_APPNAME="nvim_rocks" nvim'
 alias testvim='NVIM_APPNAME="test_vim" nvim'
 
-#alias vim='kvim' # choose
-
 export VISUAL=nvim
 export EDITOR=nvim
 
-# alias hx='helix'
-
-# --------- myFUNCTIONS --------- #
-# Copies the path of given directory or file to the system or X Windows clipboard.
-# Copy current directory if no parameter.
-function copypath {
-  # If no argument passed, use current directory
-  local file="${1:-.}"
-
-  # If argument is not an absolute path, prepend $PWD
-  [[ $file = /* ]] || file="$PWD/$file"
-
-  # Copy the absolute path without resolving symlinks
-  # If clipcopy fails, exit the function with an error
-  print -n "${file:a}" | clipcopy || return 1
-
-  echo ${(%):-"%B${file:a}%b copied to clipboard."}
-}
-
+# Functions 
 function day {
     date +"%a %b %d %Y"
 }
@@ -213,54 +184,33 @@ function touch_hush {
     touch ~/.hushlogin
   fi
 }
-
 touch_hush
 
-# launch daily notes with `notes`
-#
-# launch specific notes with `notes specialwork`
-# function notes(){
-#  SUBJECT="${1:=daily}"
-#  if [ -z "$SUBJECT" ]
-#  then
-#    (cd ~/Notes/norg/ && rvim NOTES.norg)
-#  else
-#    (cd ~/Notes/norg/ && rvim "${SUBJECT:u}.norg" NOTES.norg)
-#  fi
-#}
-
-# ----  NOTES & TASKS   ---- #
+# Notes
 alias todocywil='cd ~/Notes/taskell_cywil/ && taskell'
 
-# ---------  FZF   --------- #
+# fzf
 eval "$(fzf --zsh)"
-
 #themes
 export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
-
 #fd instead of fzf
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
 _fzf_compgen_path() {
   fd --hidden --exclude .git . "$1"
 }
-
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
-
 # to try out
 #source ~/<DIRECTORY>/fzf-git.sh/fzf-git.sh
-
 export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
 export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
-
 # Advanced customization of fzf options via _fzf_comprun function
 # - The first argument to the function is the name of the command.
 # - You should make sure to pass the rest of the arguments to fzf.
@@ -276,45 +226,40 @@ _fzf_comprun() {
   esac
 }
 
-# --------- ZOXIDE --------- #
+# Zoxide
 eval "$(zoxide init zsh)"
-
 alias cd='z'
 alias cdi='zi'
 
-# ---------  DIRS  --------- #
+# Directories
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
 
-# ------  NAVIGATION  ------ #
 # VI Mode
 bindkey jj vi-cmd-mode
 
-# --------  CHEZMOI  ------- #
- 
+# Chezmoi: 
 # Add .zshrc and ~/.config files:
 alias chadd='chezmoi add ~/.zshrc && echo ~/.config/* | xargs -rn1 | grep -v chezmoi | grep -v raycast | grep -v .DS_Store | xargs -rn1 chezmoi add' 
 alias chdiff='chezmoi diff'
 alias chmerge='chezmoi merge'
 alias ch-up='chezmoi apply -v && exec $SHELL'
-
 # Edit Files and Update them to Home
 alias chedit='chezmoi edit && ch-up' 
 # Edit Without Updating to Home
 alias chedit-no="chezmoi edit"
-
 # with use of git aliasses
-alias chcommit='cd ~/.local/share/chezmoi && gadd . && gc "$(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S"))" '
+alias chcommit='cd ~/.local/share/chezmoi && git add . && git commit -m "$(echo "Dotfiles update: " $(date +"%d-%m-%Y %H:%M:%S"))" '
 alias chcommit-push='chcommit && git push -u origin main'
-
 # Pull to your local repo: 
 alias chpull-local='cd ~/.local/share/chezmoi && git pull'
 # Pull remote directly to your home:
 alias chpull-home='chezmoi update -v && exec $SHELL'
 alias chhelp='bat ~/.zshrc | grep -v chhelp | grep "alias ch" '
+
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
