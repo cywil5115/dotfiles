@@ -192,7 +192,7 @@ function touch_hush {
 touch_hush
 
 # Notes
-alias todocywil='cd ~/Notes/taskell_cywil/ && taskell'
+alias todocywil='cd ~/Notes/taskell/ && taskell'
 
 # fzf
 eval "$(fzf --zsh)"

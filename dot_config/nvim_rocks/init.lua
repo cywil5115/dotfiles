@@ -166,27 +166,31 @@ require('lazy').setup({
     config = function()
       require('neorg').setup {
         load = {
-          ['core.defaults'] = {},
+          ['core.defaults'] = {
+              config = {
+                  qul = {
+                      toc = {
+                          close_after_use = "true"
+                      }
+                  }
+              },
+           },
           ['core.concealer'] = {
-            config = { -- We added a `config` table!
-              icon_preset = 'basic', -- And we set our option here.
-            },
+              config = { 
+                icon_preset = "diamond", --basic or varied 
+              },
           },
           ['core.summary'] = {},
-          -- ['core.completion'] = {
-          --   config = {
-          --     engine = 'nvim_cmp',
-          --   },
-          -- },
           ['core.dirman'] = {
-            config = {
-              workspaces = {
-                personal = '~/Notes/norg/personal', -- Format: <name_of_workspace> = <path_to_workspace_root>
-                studies = '~/Notes/norg/studies',
-                job = '~/Notes/norg/job',
+              config = {
+                  workspaces = {
+                      personal = '~/Notes/personal', -- Format: <name_of_workspace> = <path_to_workspace_root>
+                      studies = '~/Notes/studies',
+                      job = '~/Notes/job',
+                  },
+                  index = 'index.norg', -- The name of the main (root) .norg file
+                  default_workspace = "personal",
               },
-              index = 'index.norg', -- The name of the main (root) .norg file
-            },
           },
         }, -- put any of your previous config here
       }
