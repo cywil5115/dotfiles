@@ -166,15 +166,7 @@ require('lazy').setup({
     config = function()
       require('neorg').setup {
         load = {
-          ['core.defaults'] = {
-              config = {
-                  qul = {
-                      toc = {
-                          close_after_use = "true"
-                      }
-                  }
-              },
-           },
+          ['core.defaults'] = {},
           ['core.concealer'] = {
               config = { 
                 icon_preset = "diamond", --basic or varied 
