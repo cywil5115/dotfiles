@@ -1,6 +1,6 @@
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = ','
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
@@ -152,24 +152,6 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
-  -- Here is a more advanced example where we pass configuration
-  -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
-  --    require('gitsigns').setup({ ... })
-  --
-  -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-
   {
     'vhyrro/luarocks.nvim',
     priority = 1000, -- We'd like this plugin to load first out of the rest
@@ -201,6 +183,7 @@ require('lazy').setup({
               workspaces = {
                 personal = '~/Notes/norg/personal', -- Format: <name_of_workspace> = <path_to_workspace_root>
                 studies = '~/Notes/norg/studies',
+                job = '~/Notes/norg/job',
               },
               index = 'index.norg', -- The name of the main (root) .norg file
             },
