@@ -2,7 +2,7 @@
 
 ## Setup process
 
-I use chezmoi to manage my configurations. For now it's fairly easy setup but maybe I'll try add some automatization scripts to make it **beter**
+I use chezmoi to manage my configurations. For now it's fairly easy setup but maybe I'll try add some automatization scripts to make it **better**
 
 Install chezmoi:
 
