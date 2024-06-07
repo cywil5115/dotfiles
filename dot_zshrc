@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 unsetopt beep
 
 # Aliases
-# alias e='dolphin ./' #KDE
+ alias e='dolphin ./' #KDE
 # alias e='nautilus ./' #GNOME
 alias e='open ./' #MACOS
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
@@ -119,12 +119,12 @@ alias zzzz='sudo killall shutdown' #MACOS
 alias noshutdown='sudo killall shutdown' #MACOS
 alias cat='bat'
 alias cl='clear'
-alias ls='colorls'
-alias ll='colorls -la'
-alias lsl='colorls -la | bat --color auto'
-# alias ls='eza'
-# alias ll="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
-# alias lll='eza --long --all --git --icons=always'
+# alias ls='colorls'
+# alias ll='colorls -la'
+# alias lsl='colorls -la | bat --color auto'
+alias ls='eza'
+alias ll="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias lll='eza --long --all --git --icons=always'
 alias cpv='rsync -ah --info=progress2'
 alias mkempty='echo -n "" >'
 # alias hx='helix'
@@ -174,6 +174,7 @@ alias fshow='~/.scripts/fshow.sh'
 alias kvim='NVIM_APPNAME="kickstart_nvim" nvim'
 alias rvim='NVIM_APPNAME="nvim_rocks" nvim'
 alias testvim='NVIM_APPNAME="test_vim" nvim'
+alias hx='helix'
 
 export VISUAL=nvim
 export EDITOR=nvim
@@ -192,7 +193,7 @@ function touch_hush {
 touch_hush
 
 # Notes
-alias todocywil='cd ~/Notes/taskell/ && taskell'
+# alias todocywil='cd ~/Notes/taskell/ && taskell'
 
 # fzf
 eval "$(fzf --zsh)"

@@ -1,5 +1,6 @@
 # BEGIN_KITTY_THEME
-# Gruvbox Material Dark Soft
+# Dark One Nuanced
+font_size 16.0
+remember_window_size yes
 include current-theme.conf
-font_size 18.0
 # END_KITTY_THEME
