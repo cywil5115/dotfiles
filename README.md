@@ -28,3 +28,7 @@ Start Initialization
 ```bash
 chezmoi init git@github.com:cywil5115/dotfiles.git
 ```
+(Optional) change shell to zsh:
+```bash
+chsh -s $(which zsh)
+```
